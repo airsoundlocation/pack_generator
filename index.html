@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créateur de pack produit</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://airsoundlocation.ch/wp-content/uploads/2021/12/cropped-favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Material-UI -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js"></script>
 
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            background-color: rgb(18, 18, 37);
+            color: white;
+            text-align: center;
         }
 
         .product {
@@ -40,10 +47,74 @@
         }
 
         .product-info h3::after {
-            content: '\f35d'; /* Icone de Font Awesome pour carré avec une flèche */
+            content: '\f35d';
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
             margin-left: 8px;
+        }
+
+        #output {
+            background-color: white;
+            padding: 20px;
+            border-radius: 4px;
+            color: initial;
+            font-family: initial;
+            margin-top: 2rem;
+            overflow: auto;
+        }
+
+        button {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #3f51b5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        label {
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-top: 1rem;
+        }
+
+        input, select {
+            font-family: 'Montserrat', sans-serif;
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #3f51b5;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input[type="radio"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 1px solid #3f51b5;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+        }
+
+        input[type="radio"]:checked::after {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            background-color: #3f51b5;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
