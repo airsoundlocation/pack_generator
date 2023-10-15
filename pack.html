@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créateur de pack produit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .product {
+            padding: 10px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .product + .product {
+            border-top: 1px solid #eee;
+        }
+
+        .product img {
+            margin-right: 15px;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            margin: 0;
+            margin-bottom: 5px;
+        }
+
+        .product-info h3::after {
+            content: '\f35d'; /* Icone de Font Awesome pour carré avec une flèche */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Ajouter un produit au pack</h2>
+
+    <h3>Sélectionner un produit existant:</h3>
+    <select id="existingProducts">
+        <option value="0">Choisir un produit</option>
+        <option value="1" data-title="SOUNDBOKS 3" data-imglink="https://airsoundlocation.ch/wp-content/uploads/2023/07/soundboks-3-sb-haut-parleur-sono-enceinte-location.webp" data-productlink="https://airsoundlocation.ch/produit/soundboks-3/" data-description="Autonomie et puissance">Soundboks 3</option>
+        <option value="2" data-title="PROJECTEUR PORTABLE XGIMI HALO+" data-imglink="https://airsoundlocation.ch/wp-content/uploads/2023/08/projecteur-portable-xgimi-halo-location.webp" data-productlink="https://airsoundlocation.ch/produit/projecteur-portable-xgimi-halo/" data-description="Projecteur portable">Projecteur XGIMI HALO+</option>
+        <option value="3" data-title="MICROS SANS FIL JBL" data-imglink="https://airsoundlocation.ch/wp-content/uploads/2023/08/micros-jbl-wireless-sans-fil-location.webp" data-productlink="https://airsoundlocation.ch/produit/micros-sans-fil-jbl/" data-description="Avec amplificateur double canal pour un duo parfait">Micros JBL sans fil</option>
+    </select>
+    <button type="button" onclick="addExistingProduct()">Ajouter le produit sélectionné</button>
+
+    <h3>Ou ajouter un nouveau produit:</h3>
+    <form id="productForm">
+        <label for="title">Titre:</label>
+        <input type="text" id="title" required>
+
+        <label for="imgLink">Lien de la photo:</label>
+        <input type="url" id="imgLink" required>
+
+        <label for="productLink">Lien vers le produit:</label>
+        <input type="url" id="productLink" required>
+
+        <label for="description">Description courte:</label>
+        <input type="text" id="description" required>
+
+        <button type="button" onclick="addProduct()">Ajouter</button>
+    </form>
+
+    <h2>Produits ajoutés:</h2>
+    <div id="products"></div>
+
+    <h2>Code HTML généré:</h2>
+    <pre id="output"></pre>
+    <button onclick="copyToClipboard()">Copier dans le presse papier</button>
+
+
+    <script>
+        const products = [];
+
+        function addExistingProduct() {
+            const dropdown = document.getElementById('existingProducts');
+            const selectedOption = dropdown.options[dropdown.selectedIndex];
+
+            // Vérifier si une option valide est sélectionnée
+            if (selectedOption.value !== "0") {
+                const title = selectedOption.getAttribute('data-title');
+                const imgLink = selectedOption.getAttribute('data-imglink');
+                const productLink = selectedOption.getAttribute('data-productlink');
+                const description = selectedOption.getAttribute('data-description');
+            
+                const product = {
+                    title: title,
+                    imgLink: imgLink,
+                    productLink: productLink,
+                    description: description
+                };
+            
+                products.push(product);
+            
+                displayProducts();
+            } else {
+                alert('Veuillez choisir un produit valide.');
+            }
+        }
+
+
+        function addProduct() {
+            const title = document.getElementById('title').value;
+            const imgLink = document.getElementById('imgLink').value;
+            const productLink = document.getElementById('productLink').value;
+            const description = document.getElementById('description').value;
+
+            const product = {
+                title: title,
+                imgLink: imgLink,
+                productLink: productLink,
+                description: description
+            };
+
+            products.push(product);
+
+            displayProducts();
+        }
+
+        function htmlEncode(str) {
+            return str.replace(/[^a-zA-Z0-9]/gim, function(char) {
+                return '&#' + char.charCodeAt(0) + ';';
+            });
+        }
+
+        
+        function displayProducts() {
+            const productsDiv = document.getElementById('products');
+            productsDiv.innerHTML = '';
+        
+            products.forEach(product => {
+                productsDiv.innerHTML += `
+                    <a href="${product.productLink}" style="text-decoration: none; color: inherit;">
+                        <div style="padding: 10px; margin: 10px 0; display: flex; align-items: center; cursor: pointer; font-family: 'Poppins', sans-serif;">
+                            <img src="${product.imgLink}" alt="${htmlEncode(product.title)}" width="100" style="margin-right: 15px;">
+                            <div style="display: flex; flex-direction: column;">
+                                <h3 style="margin: 0; margin-bottom: 5px;">${htmlEncode(product.title)} <i class="fas fa-external-link-alt"></i></h3>
+                                <p>${htmlEncode(product.description)}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <hr style="border-top: 1px solid #eee;">
+                `;
+            });
+        
+            // Mettre à jour le code HTML généré
+            document.getElementById('output').textContent = productsDiv.innerHTML;
+        }
+        
+
+        function copyToClipboard() {
+            const el = document.createElement('textarea');
+            el.value = document.getElementById('output').textContent;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert("Code copié dans le presse papier !");
+        }
+    </script>
+
+</body>
+
+</html>
