@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créateur de pack produit</title>
     <link rel="icon" type="image/png" href="https://airsoundlocation.ch/wp-content/uploads/2021/12/cropped-favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Material-UI -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js"></script>
 
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
             background-color: rgb(18, 18, 37);
             color: white;
-            text-align: center;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .product {
@@ -34,33 +33,6 @@
 
         .product img {
             margin-right: 15px;
-        }
-
-        .product-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-info h3 {
-            margin: 0;
-            margin-bottom: 5px;
-        }
-
-        .product-info h3::after {
-            content: '\f35d';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            margin-left: 8px;
-        }
-
-        #output {
-            background-color: white;
-            padding: 20px;
-            border-radius: 4px;
-            color: initial;
-            font-family: initial;
-            margin-top: 2rem;
-            overflow: auto;
         }
 
         button {
@@ -89,41 +61,37 @@
             padding: 10px;
             border-radius: 4px;
             border: 1px solid #3f51b5;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        input[type="radio"] {
-            appearance: none;
-            width: 20px;
-            height: 20px;
             background-color: white;
-            border: 1px solid #3f51b5;
-            border-radius: 50%;
-            cursor: pointer;
-            position: relative;
+            color: black;
+        }
+        .product-info {
+            display: flex;
+            flex-direction: column;
         }
 
-        input[type="radio"]:checked::after {
-            content: "";
-            display: block;
-            width: 12px;
-            height: 12px;
-            background-color: #3f51b5;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .product-info h3 {
+            margin: 0;
+            margin-bottom: 5px;
+        }
+
+        .product-info h3::after {
+            content: '\f35d'; /* Icone de Font Awesome pour carré avec une flèche */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-left: 8px;
         }
     </style>
 </head>
 
-<body>
+<body style="max-width: 400px; margin: auto; font-family: Roboto, sans-serif;">
+    
+    <div style="text-align: center; margin-bottom: 40px; margin-top: 60px;">
+        <img src="https://airsoundlocation.ch/wp-content/uploads/2023/04/AirSoundwhite-1.png" alt="Airsound Logo" width="200">
+    </div>
 
-    <h2>Ajouter un produit au pack</h2>
-
-    <h3>Sélectionner un produit existant:</h3>
+    <h2>AJOUTER UN PRODUIT...</h2>
+    <br>
+    <h3>... déjà existant:</h3>
     <select id="existingProducts">
         <option value="0">Choisir un produit</option>
         <option value="1" data-title="SOUNDBOKS 3" data-imglink="https://airsoundlocation.ch/wp-content/uploads/2023/07/soundboks-3-sb-haut-parleur-sono-enceinte-location.webp" data-productlink="https://airsoundlocation.ch/produit/soundboks-3/" data-description="Autonomie et puissance">Soundboks 3</option>
@@ -145,8 +113,9 @@
         <option value="17" data-title="LD SYSTEMS ICOA 18 A" data-imglink="https://airsoundlocation.ch/wp-content/uploads/2023/08/subwoofer-ld-systems-icao-18-pouces-sub-location.webp" data-productlink="https://airsoundlocation.ch/produit/ld-systems-icoa-18-a/" data-description="">SUB LD Sytems</option>
     </select>
     <button type="button" onclick="addExistingProduct()">Ajouter le produit sélectionné</button>
-
-    <h3>Ou ajouter un nouveau produit:</h3>
+    <br>
+    <br>
+    <h3>... un nouveau produit:</h3>
     <form id="productForm">
         <label for="title">Titre:</label>
         <input type="text" id="title" required>
@@ -165,11 +134,23 @@
 
     <h2>Produits ajoutés:</h2>
     <div id="products"></div>
-
+    <br>
+    <br>
+    <br>
+    <br>
     <h2>Code HTML généré:</h2>
     <pre id="output"></pre>
     <button onclick="copyToClipboard()">Copier dans le presse papier</button>
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <script>
         const products = [];
@@ -264,3 +245,4 @@
 </body>
 
 </html>
+
